@@ -1,54 +1,62 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import Previsao from './componentes/Previsao';
 import * as serviceWorker from './serviceWorker';
 
-const previsao31_05 = {
-  data: '31/05/2019',
-  resumo: 'Ensolarado',
-  imagem: 'https://www.onlygfx.com/wp-content/uploads/2018/09/4-clipart-sun-1.png',
-  temperatura: {
-    max: 31,
-    min: 20
+const datas = [
+  {
+    data: '31/05/2019',
+    resumo: 'Ensolarado',
+    imagem: 'https://www.onlygfx.com/wp-content/uploads/2018/09/4-clipart-sun-1.png',
+    temperatura: {
+      max: 31,
+      min: 20
+    }
+  },
+  {
+    data: '01/06/2019',
+    resumo: 'Nublado',
+    imagem: 'https://cdn.pixabay.com/photo/2013/04/01/09/22/clouds-98536_960_720.png',
+    temperatura: {
+      max: 25,
+      min: 18
+    }
   }
- }
+]
+// const previsao31_05 = {
+//   data: '31/05/2019',
+//   resumo: 'Ensolarado',
+//   imagem: 'https://www.onlygfx.com/wp-content/uploads/2018/09/4-clipart-sun-1.png',
+//   temperatura: {
+//     max: 31,
+//     min: 20
+//   }
+//  }
  
- const previsao01_06 = {
-  data: '01/06/2019',
-  resumo: 'Nublado',
-  imagem: 'https://cdn.pixabay.com/photo/2013/04/01/09/22/clouds-98536_960_720.png',
-  temperatura: {
-    max: 25,
-    min: 18
-  }
- }
+//  const previsao01_06 = {
+//   data: '01/06/2019',
+//   resumo: 'Nublado',
+//   imagem: 'https://cdn.pixabay.com/photo/2013/04/01/09/22/clouds-98536_960_720.png',
+//   temperatura: {
+//     max: 25,
+//     min: 18
+//   }
+//  }
 
-class Previsao extends React.Component {
-  render() {
-    return (
-      <div className="previsao">
-        <h2 className="previsao__data">{this.props.data}</h2>
-        <p className="previsao__resumo">{this.props.resumo}</p>
-        <img className="previsao__img" src={this.props.imagem} alt="imagem da temperatura"/>
-        <table className="previsao-temperatura">
-          <tr className="previsao-temperatura__linha">
-            <th>Maximo</th>
-            <td>{this.props.temperatura.max}oC</td>
-          </tr>
-          <tr className="previsao-temperatura__linha">
-            <th>Minimo</th>
-            <td>{this.props.temperatura.min}oC</td>
-          </tr>
-        </table>
-      </div>
-    )
-  }
-}
-
-class Container extends React.Component {
+class Container extends Component {
   render() {
     return (
       <div className = "previsao-container">
+        {datas.map((dia) => (
+          <Previsao
+            data={dia.data}
+            resumo={dia.resumo}
+            imagem={dia.imagem}
+            temperatura={dia.temperatura}
+          />
+        ))}
+{/*         
         <Previsao
           data={previsao31_05.data}
           resumo={previsao31_05.resumo}
@@ -60,7 +68,7 @@ class Container extends React.Component {
           resumo={previsao01_06.resumo}
           imagem={previsao01_06.imagem}
           temperatura={previsao01_06.temperatura}
-        />
+        /> */}
       </div>
     )
   }
